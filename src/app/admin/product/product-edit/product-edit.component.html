@@ -1,0 +1,246 @@
+<div class="col-md-12 p-0 m-auto">
+  <app-spinner [loading]="isLoading"></app-spinner>
+  <div
+    *ngIf="isAlert"
+    class="alert alert-{{ alertTyp ? alertTyp : '-' }} alert-block"
+  >
+    <a class="close" data-dismiss="alert" (click)="showAlert(false)">&#xD7;</a>
+    <strong>{{ alertHeading ? alertHeading : "-" }}</strong>
+    {{ alertMsg ? alertMsg : "-" }}
+  </div>
+  <div class="p-3 bg-white shadow-sm rounded mb-4">
+    <form [formGroup]="productForm" (ngSubmit)="addProduct()">
+      <div class="form-row">
+        <div class="form-group col-md-4">
+          <label for="idp">Product ID</label>
+          <input
+            type="number"
+            class="form-control"
+            id="idp"
+            placeholder="Enter product ID"
+            formControlName="productId"
+          />
+          <div
+            class="text-danger"
+            *ngIf="productId.invalid && (productId.dirty || productId.touched)"
+          >
+            Please enter the Id.
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="productname">Product Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="productname"
+            placeholder="Enter Product Name"
+            formControlName="productName"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              productName.invalid && (productName.dirty || productName.touched)
+            "
+          >
+            Please enter product name
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="price">Product Price</label>
+          <input
+            type="number"
+            class="form-control"
+            id="price"
+            placeholder="Enter the price"
+            formControlName="price"
+          />
+          <div
+            class="text-danger"
+            *ngIf="price.invalid && (price.dirty || price.touched)"
+          >
+            Please enter the price
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-8">
+          <label for="info">Producd Information</label>
+          <input
+            type="text"
+            class="form-control"
+            id="info"
+            placeholder="Enter the information about product"
+            formControlName="productInfo"
+          />
+          <div
+            class="text-danger"
+            *ngIf="
+              productInfo.invalid && (productInfo.dirty || productInfo.touched)
+            "
+          >
+            Please enter the product information
+          </div>
+        </div>
+
+        <div class="form-group col-md-4">
+          <label for="brandname">Brand Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="brandname"
+            placeholder="Enter Brand Name"
+            formControlName="brandName"
+          />
+          <div
+            class="text-danger"
+            *ngIf="brandName.invalid && (brandName.dirty || brandName.touched)"
+          >
+            Please enter the BrandName
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-2">
+          <label for="quantity">Quantity</label>
+          <input
+            type="number"
+            class="form-control"
+            id="quantity"
+            placeholder="Enter Quantity"
+            formControlName="quantity"
+          />
+          <div
+            class="text-danger"
+            *ngIf="quantity.invalid && (quantity.dirty || quantity.touched)"
+          >
+            Please enter the quantity
+          </div>
+        </div>
+        <div class="form-group col-md-5">
+          <label for="category">Category</label>
+          <select
+            id="category"
+            class="form-control"
+            formControlName="categoryId"
+          >
+            <option *ngFor="let c of categories" [ngValue]="c.categoryId">{{
+              c.categoryName
+            }}</option>
+          </select>
+          <div
+            class="text-danger"
+            *ngIf="
+              categoryId.invalid && (categoryId.dirty || categoryId.touched)
+            "
+          >
+            Please select the category
+          </div>
+        </div>
+        <div class="form-group col-md-5">
+          <label for="retailer">Retailer</label>
+          <select
+            id="retailer"
+            class="form-control"
+            formControlName="retailerId"
+          >
+            <option *ngFor="let r of retailers" [ngValue]="r.retailerId">{{
+              r.retailerName
+            }}</option>
+          </select>
+          <div
+            class="text-danger"
+            *ngIf="
+              retailerId.invalid && (retailerId.dirty || retailerId.touched)
+            "
+          >
+            Please select the retailer
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="infourl">Image URL</label>
+          <input
+            type="text"
+            class="form-control"
+            id="infourl"
+            placeholder="Enter the image url"
+            formControlName="imageUrl"
+          />
+          <div
+            class="text-danger"
+            *ngIf="imageUrl.invalid && (imageUrl.dirty || imageUrl.touched)"
+          >
+            Please select the imageUrl
+          </div>
+        </div>
+      </div>
+
+      <div class="form-row ml-md-1 my-3">
+        <h5>Add Product Specification</h5>
+        <button
+          type="button"
+          class="btn btn-sm btn-success ml-3"
+          (click)="onSpecAdd()"
+        >
+          <i class="fa fa-plus"></i>
+        </button>
+      </div>
+
+      <div formArrayName="productSpec">
+        <div
+          class="form-row"
+          *ngFor="let specCtrl of productSpecs.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <div class="form-group col-md-4">
+            <input
+              type="text"
+              class="form-control"
+              id="infourl"
+              placeholder="Enter the name"
+              formControlName="name"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <input
+              type="text"
+              class="form-control"
+              id="infourl"
+              placeholder="Enter the value"
+              formControlName="value"
+            />
+          </div>
+          <div class="col-md-2">
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="onSpecRemove(i)"
+            >
+              <i class="fa fa-minus-circle"></i>
+            </button>
+          </div>
+          <div
+            class="text-danger"
+            *ngIf="specCtrl.invalid && (specCtrl.dirty || specCtrl.touched)"
+          >
+            Please enter the product specification.
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!productForm.valid"
+        class="btn btn-primary mt-2"
+      >
+        Save Product
+      </button>
+    </form>
+  </div>
+</div>

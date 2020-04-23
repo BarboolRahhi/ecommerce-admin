@@ -1,0 +1,60 @@
+<div
+  *ngIf="isAlert"
+  class="alert alert-{{ alertTyp ? alertTyp : '-' }} alert-block"
+>
+  <a class="close" data-dismiss="alert" (click)="showAlert(false)">&#xD7;</a>
+  <strong>{{ alertHeading ? alertHeading : "-" }}</strong>
+  {{ alertMsg ? alertMsg : "-" }}
+</div>
+<div class="p-3 bg-white shadow-sm rounded">
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Product Id</th>
+        <th scope="col">Product Name</th>
+        <th scope="col">Brand Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">View</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products">
+        <td>{{ product.productId }}</td>
+        <td>{{ product.productName }}</td>
+        <td>{{ product.brandName }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.quantity }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm"
+            (click)="onView(product.productId)"
+          >
+            <i class="fa fa-eye"></i> View
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info btn-sm"
+            (click)="onEdit(product.productId)"
+          >
+            <i class="fa fa-edit"></i> Edit
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="onDelete(product.productId)"
+          >
+            <i class="fa fa-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

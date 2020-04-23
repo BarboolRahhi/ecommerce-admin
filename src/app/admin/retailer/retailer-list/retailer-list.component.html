@@ -1,0 +1,57 @@
+<div
+  *ngIf="isAlert"
+  class="alert alert-{{ alertTyp ? alertTyp : '-' }} alert-block"
+>
+  <a class="close" data-dismiss="alert" (click)="showAlert(false)">&#xD7;</a>
+  <strong>{{ alertHeading ? alertHeading : "-" }}</strong>
+  {{ alertMsg ? alertMsg : "-" }}
+</div>
+
+<div class="p-3 bg-white shadow-sm rounded">
+  <table class="table table-bordered mt-3">
+    <thead>
+      <tr>
+        <th scope="col">Retailer Id</th>
+        <th scope="col">Retailer Name</th>
+        <th scope="col">Date</th>
+        <th scope="col">View</th>
+        <th scope="col">Edit</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let retailer of retailers">
+        <td>{{ retailer.retailerId }}</td>
+        <td>{{ retailer.retailerName }}</td>
+        <td>{{ retailer.retailerDate }}</td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-warning btn-sm"
+            (click)="onView(retailer.retailerId)"
+          >
+            <i class="fa fa-eye"></i> View Products
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-info btn-sm"
+            (click)="onEdit(retailer.retailerId)"
+          >
+            <i class="fa fa-edit"></i> Edit
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="onDelete(retailer.retailerId)"
+          >
+            <i class="fa fa-trash"></i> Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

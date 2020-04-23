@@ -1,0 +1,70 @@
+<div class="col-md-8 m-auto">
+  <div class="alert alert-danger" *ngIf="errorMsg">
+    <h6>{{ errorMsg }}</h6>
+  </div>
+  <div class="alert alert-info" *ngIf="successMsg">
+    <h6>{{ successMsg }}</h6>
+  </div>
+  <div class="p-3 bg-white shadow-sm rounded">
+    <form #f="ngForm" (ngSubmit)="addRetailer()">
+      <div class="form-group">
+        <label for="exampleInputId">Retailer Id</label>
+        <input
+          type="number"
+          class="form-control"
+          id="exampleInputId"
+          placeholder="Enter Id"
+          [disabled]="editMode"
+          name="retailerId"
+          ngModel
+          #retailerId="ngModel"
+          required
+        />
+        <div
+          class="text-danger"
+          *ngIf="!retailerId.valid && retailerId.touched"
+        >
+          Please enter the Id.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputName">Retailer Name</label>
+        <input
+          type="text"
+          class="form-control"
+          id="exampleInputName"
+          placeholder="Enter Name"
+          name="retailerName"
+          ngModel
+          #name="ngModel"
+          required
+        />
+        <div class="text-danger" *ngIf="!name.valid && name.touched">
+          Please enter the name.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="exampleInputdoj">Date of Joining</label>
+        <input
+          type="date"
+          class="form-control"
+          id="exampleInputdoj"
+          placeholder="Enter DOJ"
+          name="retailerDate"
+          ngModel
+          #doj="ngModel"
+          required
+        />
+        <div class="text-danger" *ngIf="!doj.valid && doj.touched">
+          Please enter the Date of Joining
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+        Save Retailer
+      </button>
+    </form>
+  </div>
+</div>

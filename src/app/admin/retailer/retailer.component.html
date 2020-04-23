@@ -1,0 +1,58 @@
+<div class="row justify-content-center">
+  <div class="col-md-10 mt-5">
+    <form #f="ngForm" class="form-inline p-3 bg-white shadow-sm rounded">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <select name="type" [(ngModel)]="type" class="custom-select" required>
+            <option [value]="undefined" disabled selected>Type</option>
+            <option value="name">By Name</option>
+            <option value="id">By Id</option>
+          </select>
+        </div>
+        <input
+          [type]="type == 'id' ? 'number' : 'text'"
+          class="form-control"
+          placeholder="Serach the retailer..."
+          required
+          name="search"
+          [(ngModel)]="search"
+        />
+        <div class="input-group-append">
+          <button
+            type="button"
+            class="btn btn-info"
+            type="button"
+            [disabled]="!f.valid"
+            (click)="onSerach()"
+          >
+            <i class="fa fa-search"></i>
+          </button>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn-primary ml-2"
+        routerLinkActive="active"
+        routerLink="list"
+      >
+        View Retailer
+      </button>
+      <button type="submit" class="btn btn-primary ml-2">
+        View Retailer Products
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary ml-2"
+        routerLinkActive="active"
+        routerLink="add"
+      >
+        <i class="fa fa-plus"></i> Add
+      </button>
+    </form>
+    <hr />
+    <div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

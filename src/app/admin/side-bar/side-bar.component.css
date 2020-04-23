@@ -1,0 +1,39 @@
+#sidebar-wrapper {
+  height: 100%;
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+.side-bar-bg {
+  background: #4e54c8; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #8f94fb, #4e54c8);
+  background: linear-gradient(to bottom, #8f94fb, #4e54c8);
+}
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+}
+
+a.active {
+  color: white !important;
+  background-color: rgba(0, 0, 0, 0.315);
+}
+
+a {
+  background-color: #4e54c834;
+  color: white;
+}

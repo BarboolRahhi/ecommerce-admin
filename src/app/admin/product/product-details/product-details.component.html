@@ -1,0 +1,103 @@
+<div class="col-md-12 m-auto">
+  <app-spinner [loading]="isLoading"></app-spinner>
+  <div
+    *ngIf="isAlert"
+    class="alert alert-{{ alertTyp ? alertTyp : '-' }} alert-block"
+  >
+    <a class="close" data-dismiss="alert" (click)="showAlert(false)">&#xD7;</a>
+    <strong>{{ alertHeading ? alertHeading : "-" }}</strong>
+    {{ alertMsg ? alertMsg : "-" }}
+  </div>
+  <div
+    class="row justify-content-between mb-4 p-3 bg-white shadow-sm rounded"
+    *ngIf="product != null"
+  >
+    <div class="col-md-6">
+      <h3>{{ product.productName }}</h3>
+      <div class="badge badge-info p-1">
+        Product Id: {{ product.productId }}
+      </div>
+      <div class="badge badge-danger p-1 ml-2">
+        Brand Name: {{ product.brandName }}
+      </div>
+      <div class="badge badge-warning p-1 ml-2">
+        Quantity: {{ product.quantity }}
+      </div>
+
+      <p class="text-success m-0 mt-3">Price</p>
+      <h4 pt-0>{{ product.price | currency: "INR" }}</h4>
+
+      <h6 class="text-info m-0 mt-3"><strong>Over All Reating</strong></h6>
+      <hr class="my-1" />
+      <h5 class="">4.5/5 <i class="fa fa-star text-warning"> </i></h5>
+
+      <h6 class="text-info m-0 mt-3"><strong>Product Info</strong></h6>
+      <hr class="my-1" />
+      <p class="">
+        {{ product.productInfo }}
+      </p>
+
+      <div class="alert alert-success">
+        <h6><strong>Category</strong></h6>
+        <hr class="my-1" />
+        <p class="m-0">Category Id: {{ product.category.categoryId }}</p>
+        <p class="m-0">Category Name: {{ product.category.categoryName }}</p>
+      </div>
+      <div class="alert alert-warning">
+        <h6><strong>Retailer</strong></h6>
+        <hr class="my-1" />
+        <p class="m-0">Retailer Id: {{ product.inventory.retailerId }}</p>
+        <p class="m-0">Retailer Name: {{ product.inventory.retailerName }}</p>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <button class="btn btn-info btn-block">
+            <i class="fa fa-edit"> </i> Edit
+          </button>
+        </div>
+        <div class="col-md-6">
+          <button class="btn btn-danger btn-block">
+            <i class="fa fa-trash"> </i> Delete
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 border-left">
+      <div class="row">
+        <div class="col-md-12">
+          <img
+            class="img-responsive"
+            src="https://i.pinimg.com/originals/b5/f4/d3/b5f4d3698e4054ac21542f5c08cf43c6.jpg"
+            alt=""
+            style="width: 100%; height: 280px;"
+          />
+        </div>
+        <div class="col-md-12">
+          <h5 class="my-3 text-secondary"><strong>Specfication</strong></h5>
+          <table class="table table-striped table-light table-bordered">
+            <thead>
+              <tr class="table-info">
+                <th scope="col">Name</th>
+                <th scope="col">Value</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>Otto</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

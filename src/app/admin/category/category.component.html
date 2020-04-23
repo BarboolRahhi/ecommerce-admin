@@ -1,0 +1,67 @@
+<div class="row justify-content-center">
+  <div class="col-md-10 mt-5">
+    <div class="p-3 bg-white shadow-sm rounded">
+      <form #f="ngForm" (ngSubmit)="addCategory()">
+        <div class="row">
+          <div class="col-md-10">
+            <input
+              type="text"
+              class="form-control"
+              id="inlineFormInputName"
+              placeholder="Enter Category Name"
+              name="categoryName"
+              ngModel
+              #name="ngModel"
+              required
+            />
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="!f.valid">
+            <i class="fa fa-plus"></i> {{ editMode ? "Update" : "Add" }}
+          </button>
+        </div>
+      </form>
+    </div>
+    <hr />
+    <h6 class="alert alert-info text-center" *ngIf="message">
+      {{ message }}
+    </h6>
+
+    <div class="p-3 bg-white shadow-sm rounded">
+      <table class="table table-bordered mt-3">
+        <thead>
+          <tr>
+            <th scope="col">Category Id</th>
+            <th scope="col">Category Name</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categories">
+            <td>{{ category.categoryId }}</td>
+            <td>{{ category.categoryName }}</td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-info btn-sm"
+                (click)="onEdit(category)"
+              >
+                <i class="fa fa-edit"></i> Edit
+              </button>
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                (click)="onDelete(category.categoryId)"
+              >
+                <i class="fa fa-trash"></i> Delete
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

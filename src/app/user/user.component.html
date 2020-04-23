@@ -1,0 +1,44 @@
+<div class="container-fluid bg-light">
+  <div class="row justify-content-center align-items-center vh-100">
+    <div class="col-md-4 bg-white p-5 rounded shadow">
+      <h4 class="text-center alert alert-info">Ecommerce Admin Login</h4>
+      <p class="text-center alert alert-danger" *ngIf="error">{{ error }}</p>
+      <form #f="ngForm" (ngSubmit)="login()">
+        <div class="form-group mt-3">
+          <label for="exampleInputEmail1">Email address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="exampleInputEmail1"
+            aria-describedby="emailHelp"
+            placeholder="Enter email"
+            name="email"
+            ngModel
+            #email="ngModel"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">Password</label>
+          <input
+            type="password"
+            class="form-control"
+            id="exampleInputPassword1"
+            placeholder="Password"
+            name="password"
+            ngModel
+            #pass="ngModel"
+            required
+          />
+        </div>
+        <button
+          type="submit"
+          [disabled]="!f.valid"
+          class="btn btn-block btn-primary mt-3"
+        >
+          Log In
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
